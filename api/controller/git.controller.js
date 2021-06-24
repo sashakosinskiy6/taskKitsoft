@@ -1,6 +1,12 @@
 const gitService = require("../services/git.service");
 
 class GitController {
+  /**
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @param {} next
+   */
   async getUserByUsername(req, res, next) {
     try {
       const { userName } = req.query;

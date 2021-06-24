@@ -8,15 +8,10 @@ class GitMiddleware {
       if (userName) {
         const isExist = await client.exists(userName);
 
-        if (!isExist) {
-          console.log("To Controller");
-
-          return next();
-        }
-        console.log("To Redis");
+        if (!isExist) return next();
 
         const userData = await client.get(userName);
-        res.json(JSON.parse(userData));
+        res.json({ response: JSON.parse(userData) });
       } else {
         res.status(404).send({ response: "Oops user name not entered :)" });
       }

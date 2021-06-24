@@ -11,15 +11,15 @@ class GitService {
    */
   async getUserProjects(userName) {
     try {
-      const { data } = await axios.get(
+      const { data: user } = await axios.get(
         `${process.env.GIT_LUB_API}users?username=${userName}`
       );
 
-      if (data.length === 0) {
+      if (user.length === 0) {
         return "We cannot find a user with this name or it does not exist :)";
       }
       const userProjects = await axios.get(
-        `${process.env.GIT_LUB_API}users/${data[0].id}/projects`
+        `${process.env.GIT_LUB_API}users/${user[0].id}/projects`
       );
 
       let filterDataArray = userProjects.data.map((elem) => {
